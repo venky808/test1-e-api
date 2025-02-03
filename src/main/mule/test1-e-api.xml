@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="1cf66fc2-4722-4af9-ba66-4cb9d160237c" >
+		<http:listener-connection host="0.0.0.0" port="6007" />
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="02050294-528f-49e9-9b7c-bdcb28dd5a31" >
+		<http:request-connection host="localhost" port="6008" />
+	</http:request-config>
+	<flow name="hello-worldFlow" doc:id="aa78cbc9-e1d9-45da-916b-56860fe72361" >
+		<http:listener doc:name="Listener" doc:id="672531bd-903d-4b1a-9fc7-9b5bdff21cf1" config-ref="HTTP_Listener_config" path="/test1-e-api"/>
+		<logger level="INFO" doc:name="test1-e-api-log" doc:id="d33aefc6-5b3e-4a80-8370-ea63a67e5c01" message='#["test1-e-api log!"]'/>
+		<http:request method="GET" doc:name="connect-test1-p-api" doc:id="825952c7-4707-4e5c-a472-93d846036316" config-ref="HTTP_Request_configuration" path="/test1-p-api" responseTimeout="180000" sendCorrelationId="ALWAYS"/>
+		<ee:transform doc:name="hello-world" doc:id="4fbd5771-b92f-4f2f-88fa-c6c0eb7fe02c" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
