@@ -14,15 +14,15 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<app.runtime>4.8.1.venky</app.runtime>
-		<mule.maven.plugin.version>4.3.0</mule.maven.plugin.version>
+		<mule.maven.plugin.version>4.3.0.venky</mule.maven.plugin.version>
 	</properties>
 
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-clean-plugin-venky</artifactId>
-				<version>3.2.0</version>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>3.2.1</version>
 			</plugin>
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
