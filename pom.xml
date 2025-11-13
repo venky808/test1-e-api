@@ -5,7 +5,7 @@
 	<groupId>com.mycompany</groupId>
 	<artifactId>hello-world</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<packaging>mule-application-venky</packaging>
+	<packaging>mule-application-venky-master</packaging>
 
 	<name>test1-e-api</name>
 
